@@ -2,7 +2,7 @@ package Transport;
 
 import java.util.Objects;
 
-public abstract class Transport {
+public abstract class   Transport {
     private    String brand; // «Марка»
     private    String model; // «Модель»
     private  float engineVolume; // «Объем двигателя»
@@ -25,6 +25,28 @@ public abstract class Transport {
 
     public abstract void finish(); // метод «закончить движение»
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public float getEngineVolume() {
+        return engineVolume;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Transport{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineVolume=" + engineVolume +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,26 +58,5 @@ public abstract class Transport {
     @Override
     public int hashCode() {
         return Objects.hash(brand, model, engineVolume);
-    }
-
-    @Override
-    public String toString() {
-        return "Transport{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                '}';
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public float getEngineVolume() {
-        return engineVolume;
     }
 }
