@@ -4,11 +4,21 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Truck extends Transport implements Competing{
 
-    public Truck(String brand,
-                 String model,
-                 float engineVolume) {
+    private TruckLoadCapacity truckLoadCapacity;
+
+    public Truck(String brand, String model, float engineVolume, TruckLoadCapacity truckLoadCapacity) {
 
         super(brand, model, engineVolume);
+
+        this.truckLoadCapacity = truckLoadCapacity;
+    }
+
+    public TruckLoadCapacity getTruckLoadCapacity() {
+        return truckLoadCapacity;
+    }
+
+    public void setTruckLoadCapacity(TruckLoadCapacity truckLoadCapacity) {
+        this.truckLoadCapacity = truckLoadCapacity;
     }
 
     @Override
@@ -38,6 +48,15 @@ public class Truck extends Transport implements Competing{
     @Override
     public String getBrand() {
         return super.getBrand();
+    }
+
+    @Override
+    public void type() {
+        if (truckLoadCapacity == null) {
+            System.out.println(" Недостаточно данных по   грузовику");
+        } else {
+            System.out.println(" Грузоподъемность " + getTruckLoadCapacity());
+        }
     }
 
     @Override

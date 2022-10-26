@@ -7,12 +7,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Car extends Transport implements Competing {
 
+    private Type type;
+
     public Car(String brand,
                String model,
-               float engineVolume) {
+               float engineVolume,
+               Type type) {
 
         super(brand, model, engineVolume);
+
+        this.type = type;
     }
+
     ///////////////////////////////////////
     @Override
     public void start() {
@@ -25,6 +31,22 @@ public class Car extends Transport implements Competing {
                 getBrand(), getModel());
     }
     ///////////////////////////////////////
+    public void type() {
+        if (type == null) {
+            System.out.println(" Данных по авто недостаточно");
+        } else {
+            System.out.println(" Тип кузова автомобиля " + type);
+        }
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
 
     @Override
     public String getBrand() {
@@ -58,7 +80,8 @@ public class Car extends Transport implements Competing {
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + " Тип кузова: "
+                + getType();
     }
 
     @Override
@@ -71,4 +94,5 @@ public class Car extends Transport implements Competing {
         return super.hashCode();
     }
 }
+
 

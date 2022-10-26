@@ -25,6 +25,8 @@ public abstract class   Transport {
 
     public abstract void finish(); // метод «закончить движение»
 
+    public abstract void type();
+
     public String getBrand() {
         return brand;
     }
