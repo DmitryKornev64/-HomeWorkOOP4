@@ -6,24 +6,80 @@ import Transport.Bus;
 import Transport.Car;
 import Transport.Truck;
 import Transport.*;
+
+import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongLoginException, WrongPasswordException {
 
-        Bus hyundai = new Bus("Hyundai","H350", 2.2f, BusCapacityType.LARGE);
-        Bus man = new Bus("MAN", "Lion’s Coach", 3.5f, BusCapacityType.MEDIUM);
-        Bus volvo = new Bus("Volvo", "9700", 3.8f, BusCapacityType.MEDIUM);
-        Bus foton = new Bus("Foton", "View", 2.4f, BusCapacityType.EXTRA_SMALL);
+        Bus hyundai = new Bus(
+                "Hyundai",
+                "H350",
+                2.2f,
+                BusCapacityType.LARGE);
+        Bus man = new Bus(
+                "MAN",
+                "Lion’s Coach",
+                3.5f,
+                BusCapacityType.MEDIUM);
+        Bus volvo = new Bus(
+                "Volvo",
+                "9700",
+                3.8f,
+                BusCapacityType.MEDIUM);
+        Bus foton = new Bus(
+                "Foton",
+                "View",
+                2.4f,
+                BusCapacityType.EXTRA_SMALL);
 
-        Car bmv = new Car("BMW", "X6", 2.8f, Type.COUPE);
-        Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0f, Type.HATCHBACK);
-        Car bmvZ8 = new Car("BMW", "Z8", 3.0f, Type.SEDAN);
-        Car kia = new Car("Kia", "Sportage 4 поколение", 2.4f, Type.CROSSOVER);
+        Car bmv = new Car(
+                "BMW",
+                "X6",
+                2.8f,
+                Type.COUPE);
+        Car audi = new Car(
+                "Audi",
+                "A8 50 L TDI quattro",
+                3.0f,
+                Type.HATCHBACK);
+        Car bmvZ8 = new Car(
+                "BMW",
+                "Z8",
+                3.0f,
+                Type.SEDAN);
+        Car kia = new Car(
+                "Kia",
+                "Sportage 4 поколение",
+                2.4f,
+                Type.CROSSOVER);
 
-        Truck kamaz = new Truck("КамАЗ", "54901", 3.8f, TruckLoadCapacity.N3);
-        Truck volkswagen = new Truck("Volkswagen", "Crafter", 3.2f, TruckLoadCapacity.N1);
-        Truck zil = new Truck("ЗИЛ", "130", 3.0f, TruckLoadCapacity.N2);
-        Truck gaz = new Truck("ГАЗель", "-Next", 2.5f, TruckLoadCapacity.N2);
 
+        Truck kamaz = new Truck(
+                "КамАЗ",
+                "54901",
+                3.8f,
+                TruckLoadCapacity.N3);
+        Truck volkswagen = new Truck(
+                "Volkswagen",
+                "Crafter",
+                3.2f,
+                TruckLoadCapacity.N1);
+        Truck zil = new Truck(
+                "ЗИЛ",
+                "130",
+                3.0f,
+                TruckLoadCapacity.N2);
+        Truck gaz = new Truck(
+                "ГАЗель",
+                "-Next",
+                2.5f,
+                TruckLoadCapacity.N2);
+
+        servis(
+                hyundai, man, volvo, foton,
+                bmv, audi, bmvZ8, kia,
+                kamaz, volkswagen, zil, gaz
+        );
 
         Driver vinDiesel = new DriversB("Вин Дизель", 4, bmv);
         System.out.println("vinDiesel = " + vinDiesel);
@@ -38,5 +94,24 @@ public class Main {
         volkswagen.type();
         man.type();
         volvo.type();
+
+        // Data.inputLog();
+        servis();
+
+    }
+    public static void servis(Transport... transports) {
+        for (Transport transport : transports) {
+            servisPrintExpention(transport);
+        }
+    }
+
+    public static void servisPrintExpention(Transport transports) {
+        try {
+            if (!transports.texService()) {
+                throw new RuntimeException(transports.getBrand() + "" + transports.getModel() + " Не прошшел диагностику");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

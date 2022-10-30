@@ -4,7 +4,7 @@ import Transport.Transport;
 
 public abstract class Driver<T extends Transport> {
     private final String driverName; // «ФИО» водителя
-    private final String category; // «Наличие водительских прав»
+    private String category; // «Наличие водительских прав»
     private final int experienceYears; // «Стаж»
 
     private final T car;
@@ -18,6 +18,7 @@ public abstract class Driver<T extends Transport> {
         this.category = category;
         this.experienceYears = experienceYears;
         this.car = car;
+        setCategory(category);
     }
 
     public  void startUp() { // «начать движение»
@@ -44,6 +45,14 @@ public abstract class Driver<T extends Transport> {
 
     public int getExperienceYears() {
         return experienceYears;
+    }
+
+    public void setCategory(String category) {
+        if (category == null || category.isBlank()) {
+            throw new IllegalArgumentException("Необходимо указать тип прав!");
+        } else {
+            this.category = category;
+        }
     }
 
     @Override

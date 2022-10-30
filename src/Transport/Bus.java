@@ -37,6 +37,11 @@ public class Bus extends Transport implements Competing {
         return ThreadLocalRandom.current().nextInt(10, 150);
     }
 
+    public boolean texService() {
+        System.out.println(" Автобус " + getBrand()+ getModel()+ " в осмотре не нуждается ");
+        return true;
+    }
+
     @Override
     public void start() {
         System.out.printf("Start %s %s", getModel(), getBrand());

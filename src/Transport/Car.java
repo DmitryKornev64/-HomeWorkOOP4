@@ -63,6 +63,9 @@ public class Car extends Transport implements Competing {
         return super.getEngineVolume();
     }
 
+    public boolean texService() {
+        return Math.random()> 0.5;
+    }
     @Override
     public void getPitStop() {
         System.out.printf(" Car %s %S заехал на пит-стоп", getBrand(), getModel());

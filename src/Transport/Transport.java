@@ -21,6 +21,8 @@ public abstract class   Transport {
         }
     }
 
+    public abstract boolean texService();
+
     public abstract void start(); // метод «начать движение»
 
     public abstract void finish(); // метод «закончить движение»

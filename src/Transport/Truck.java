@@ -21,6 +21,9 @@ public class Truck extends Transport implements Competing{
         this.truckLoadCapacity = truckLoadCapacity;
     }
 
+    public boolean texService() {
+        return Math.random()>0.5;
+    }
     @Override
     public void getPitStop() {
         System.out.printf(" Truck %s %s заехал на пит-стоп", getModel(),getBrand());
