@@ -86,4 +86,8 @@ public class Truck extends Transport implements Competing{
     public int hashCode() {
         return super.hashCode();
     }
+    @Override
+    public void repaer() {
+        System.out.println("Грузовик " + getBrand() + getModel()+ " отремонтирован");
+    }
 }

@@ -67,6 +67,10 @@ public class Car extends Transport implements Competing {
         return Math.random()> 0.5;
     }
     @Override
+    public void repaer() {
+        System.out.println("Автомобиль " + getBrand() + getModel()+ " отремонтированна");
+    }
+    @Override
     public void getPitStop() {
         System.out.printf(" Car %s %S заехал на пит-стоп", getBrand(), getModel());
     }

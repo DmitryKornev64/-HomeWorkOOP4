@@ -1,6 +1,10 @@
 package Drivers;
 
+import Transport.Mechanic;
 import Transport.Transport;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Driver<T extends Transport> {
     private final String driverName; // «ФИО» водителя
@@ -10,28 +14,34 @@ public abstract class Driver<T extends Transport> {
     private final T car;
 
 
-    public Driver(String driverName,
-                  String category,
-                  int experienceYears,
-                  T car) {
+    public Driver(String driverName, String category, int experienceYears, T car) {
         this.driverName = driverName;
-        this.category = category;
         this.experienceYears = experienceYears;
         this.car = car;
         setCategory(category);
     }
 
-    public  void startUp() { // «начать движение»
+    public static Set<Driver> drivers = new HashSet<>();
+
+    public static void addDriver(Driver driv) {
+        for (Driver echanic : drivers) {
+            if (drivers.contains(driv)) {
+                throw new IllegalArgumentException("Механик уже добавлен");
+            } else drivers.add(driv);
+        }
+    }
+
+    public void startUp() {
         System.out.printf("Driver %s started moving", getDriverName());
         this.car.start();
     }
 
-    public void  stop() { // «остановиться»
+    public void stop() {
         System.out.printf("Driver %s stopped moving", getDriverName());
         this.car.finish();
     }
 
-    public void  refuelCar() { // «заправить авто»
+    public void refuelCar() {
         System.out.printf("Driver %s refuel %s %s", getDriverName(), car.getBrand(), car.getModel());
     }
 

@@ -1,11 +1,18 @@
 package Transport;
+import Drivers.Driver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class   Transport {
     private    String brand; // «Марка»
     private    String model; // «Модель»
     private  float engineVolume; // «Объем двигателя»
+    private final List<Driver<?>> drivers = new ArrayList<>();
+    private final List<Mechanic<?>> mechanics = new ArrayList<>();
+    private final List<Sponsor> sponsors = new ArrayList<>();
 
     public Transport(String brand,
                      String model,
@@ -40,7 +47,30 @@ public abstract class   Transport {
     public float getEngineVolume() {
         return engineVolume;
     }
+    public List<Driver<?>> getDrivers() {
+        return drivers;
+    }
 
+    public List<Mechanic<?>> getMechanics() {
+        return mechanics;
+    }
+
+    public List<Sponsor> getSponsors() {
+        return sponsors;
+    }
+
+    public void addDriver(Driver<?> driver) {
+        drivers.add(driver);
+    }
+    public void addMechanic(Mechanic<?>... mechanic) {
+        this.mechanics.addAll(Arrays.asList(mechanic));
+    }
+    public void addSponsor(Sponsor... sponsor) {
+        this.sponsors.addAll(Arrays.asList(sponsor));
+    }
+
+    public void printInfo() {
+    }
 
     @Override
     public String toString() {
@@ -63,4 +93,6 @@ public abstract class   Transport {
     public int hashCode() {
         return Objects.hash(brand, model, engineVolume);
     }
+    public abstract void repaer();
+
 }
